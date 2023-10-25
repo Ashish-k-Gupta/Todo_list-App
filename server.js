@@ -12,11 +12,20 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true})
     const db = client.db('todo-app')
     const tasksCollection = db.collection('tasks')
 
+    app.set('view engine', 'ejs')
+
     app.use(bodyParser.urlencoded({extended: true }))
 
-    app.get('/', function (req, res){
-        res.sendFile(__dirname +'/index.html')
-
+    app.get('/',  (req, res) => {
+        // res.sendFile(__dirname +'/index.html')
+        db.collection('tasks')
+        .find()
+        .toArray()
+        .then(results =>{
+            // console.log(results)
+            res.render('index.ejs', {tasks: results})
+        })
+        .catch(error => console.error(error))
     })
     app.post('/task', (req, res) => {
         tasksCollection

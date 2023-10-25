@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List App</title>
+</head>
+<body>
+    <h1>To Do List App</h1>
+
+    <form action="/task" method="post">
+        <input type="text" placeholder="Add Your Task Here" name="task">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <section data-postion="tasks">
+        <h2>Tasks</h2>
+        <ul class="tasks">
+            <% for(let i = 0; i < tasks.length; i++) {%>
+                <li class="task">
+                    <span><%= tasks[i].task %></span>
+                </li>
+                <%  } %>
+            </ul>
+        </section>
+</body>
+</html>
