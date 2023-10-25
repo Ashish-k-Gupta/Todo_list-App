@@ -17,11 +17,22 @@
         <h2>Tasks</h2>
         <ul class="tasks">
             <% for(let i = 0; i < tasks.length; i++) {%>
-                <li class="task">
-                    <span><%= tasks[i].task %></span>
+                <div class="container" style="display: flex; flex-direction: row;" >
+                <li class="task" style=" margin-bottom: 0rem">
+                    <span style="font-size: 1.5rem; ;"><%= tasks[i].task %></span>
                 </li>
+                
+                <section data-postion="delete-task">
+                    <button id="delete-button" style="margin-left:  2rem;">Done</button>
+                </section>
+                </div>
+
+
                 <%  } %>
             </ul>
         </section>
+
+        <script src="/main.js"></script>
+        <!-- <script src="../public/main.js"></script> -->
 </body>
 </html>

@@ -1,7 +1,8 @@
 console.log("Node is running");
 
 const express = require('express')
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const { ObjectId } = require('mongodb');
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const connectionString = 'mongodb+srv://AshishGupta:tSw64ekEU1rlsAeu@cluster0.ckyacck.mongodb.net/?retryWrites=true&w=majority'
@@ -15,6 +16,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true})
     app.set('view engine', 'ejs')
 
     app.use(bodyParser.urlencoded({extended: true }))
+    app.use(express.static('public'));
 
     app.get('/',  (req, res) => {
         // res.sendFile(__dirname +'/index.html')
@@ -35,9 +37,23 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true})
         })
         // console.log(req.body)
     })
+
+     app.delete('/tasks', (req, res) =>{
+        tasksCollection.deleteOne(
+            {name: req.body.tasks}
+        )
+        .then(result => {
+            res.json("Task Is Completed")
+        })
+        .catch(error => console.error(error))
+    })
+
+
     app.listen(3000, function(){
         console.log('listen on 3000')
-    })
+    }) 
+
+
 
     
     })
