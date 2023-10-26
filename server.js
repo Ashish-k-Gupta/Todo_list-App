@@ -38,7 +38,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true})
         // console.log(req.body)
     })
 
-     app.delete('/tasks', (req, res) =>{
+/* 
+    app.delete('/tasks', (req, res) =>{
         tasksCollection.deleteOne(
             {name: req.body.tasks}
         )
@@ -47,6 +48,25 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true})
         })
         .catch(error => console.error(error))
     })
+ */
+
+    app.delete('/tasks/:id', (req, res) => {
+        const taskId = req.params.id; // Retrieve the _id from the URL path
+    
+        tasksCollection.deleteOne({ _id: new ObjectId(taskId) })
+            .then(result => {
+                if (result.deletedCount === 1) {
+                    res.json({ message: 'Task deleted' });
+                } else {
+                    res.status(404).json({ message: 'Task not found' });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                res.status(500).json({ error: 'Internal server error' });
+            });
+    });
+    
 
 
     app.listen(3000, function(){
