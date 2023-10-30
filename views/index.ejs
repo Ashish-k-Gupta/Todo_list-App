@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>To Do List App</title>
 </head>
 <body>
     <h1>To Do List App</h1>
 
     <form action="/task" method="post">
-        <input type="text" placeholder="Add Your Task Here" name="task">
+        <input type="text" placeholder="Add Your Task Here" name="task" id="taskInput">
         <button type="submit">Submit</button>
     </form>
     
@@ -17,13 +18,13 @@
         <h2>Tasks</h2>
         <ul class="tasks">
             <% for(let i = 0; i < tasks.length; i++) {%>
-                <div class="container" style="display: flex; flex-direction: row;" >
-                <li class="task" style=" margin-bottom: 0rem">
-                    <span style="font-size: 1.5rem; ;"><%= tasks[i].task %></span>
+                <div class="container">
+                <li class="task">
+                    <span><%= tasks[i].task %></span>
                 </li>
                 
                 <section data-postion="delete-task">
-                    <button class="mark-done" data-task-id="<%= tasks[i]._id %>" style="margin-left:  2rem;">Done</button>
+                    <button class="mark-done" data-task-id="<%= tasks[i]._id %>" style="margin-left:  2rem;">DELETE</button>
                 </section>
                 </div>
 

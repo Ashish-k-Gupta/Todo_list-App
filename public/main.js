@@ -1,25 +1,21 @@
-// const { response } = require("express")
 /* 
-const deleteButton = document.querySelector('#delete-button')
+document.addEventListener('DOMContentLoaded', function(){
 
 
+const submitButton = document.getElementById('addButton')
 
-deleteButton.addEventListener('click', _ => {
-    fetch('/tasks',{
-        method: 'delete',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            name: 'task'
-        })
-    })
 
-    .then(res=>{
-        if(res.ok) return res.json()
-    })
-    .then(data => {
-        window.location.reload()
-    })
+submitButton.addEventListener('click', function(event){
+    const taskInput = document.getElementById('taskInput')
+    const task = taskInput.value.trim();
+
+    if(task === ''){
+        alert('Task Cannot Be Empty')
+        event.preventDefault()
+    }
 })
+})
+
  */
 
 
@@ -29,20 +25,7 @@ deleteButtons.forEach(button => {
     button.addEventListener('click', function() {
          const taskId = this.getAttribute('data-task-id');
 
-        /*  fetch('/tasks' + taskId,{
-            method: 'DELETE',
-         })
-         .then(response => response.json())
-         .then(data => {
-            if(data.message === 'Task deleted'){
-                const taskElement = this.parentNode.parentNode;
-                taskElement.remove()
-            }else {
-                console.error(data.message); // Handle errors
-            }
-         })
-         .catch(error => console.error(error)); */
-
+     
          fetch('/tasks/' + taskId, {
             method: 'DELETE',
         })
@@ -72,3 +55,44 @@ deleteButtons.forEach(button => {
         
     })
 })
+
+
+
+   /*  fetch('/tasks' + taskId,{
+            method: 'DELETE',
+         })
+         .then(response => response.json())
+         .then(data => {
+            if(data.message === 'Task deleted'){
+                const taskElement = this.parentNode.parentNode;
+                taskElement.remove()
+            }else {
+                console.error(data.message); // Handle errors
+            }
+         })
+         .catch(error => console.error(error)); */
+
+
+// const { response } = require("express")
+/* 
+const deleteButton = document.querySelector('#delete-button')
+
+
+
+deleteButton.addEventListener('click', _ => {
+    fetch('/tasks',{
+        method: 'delete',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            name: 'task'
+        })
+    })
+
+    .then(res=>{
+        if(res.ok) return res.json()
+    })
+    .then(data => {
+        window.location.reload()
+    })
+})
+ */

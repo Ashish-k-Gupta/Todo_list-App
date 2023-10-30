@@ -29,26 +29,21 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true})
         })
         .catch(error => console.error(error))
     })
+
     app.post('/task', (req, res) => {
+        const task = req.body.task;
+        const uppercaseTask = task.toUpperCase();
         tasksCollection
-        .insertOne(req.body)
+        .insertOne({task: uppercaseTask})
         .then(result => {
             res.redirect('/')
         })
-        // console.log(req.body)
+
+    
+
     })
 
-/* 
-    app.delete('/tasks', (req, res) =>{
-        tasksCollection.deleteOne(
-            {name: req.body.tasks}
-        )
-        .then(result => {
-            res.json("Task Is Completed")
-        })
-        .catch(error => console.error(error))
-    })
- */
+
 
     app.delete('/tasks/:id', (req, res) => {
         const taskId = req.params.id; // Retrieve the _id from the URL path
@@ -83,5 +78,18 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true})
 //Make Sure you place body-parser before your CRUD handlers!
 
 // ALl our handlers are here....
+
+
+/* 
+    app.delete('/tasks', (req, res) =>{
+        tasksCollection.deleteOne(
+            {name: req.body.tasks}
+        )
+        .then(result => {
+            res.json("Task Is Completed")
+        })
+        .catch(error => console.error(error))
+    })
+ */
 
 
