@@ -12,11 +12,7 @@ require('dotenv').config()
 let db, 
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo-app'
-
     
-// const connectionString = 'mongodb+srv://AshishGupta:tSw64ekEU1rlsAeu@cluster0.ckyacck.mongodb.net/?retryWrites=true&w=majority'
-// const connectionString = 'mongodb+srv://AshishGupta:tSw64ekEU1rlsAeu@cluster0.ckyacck.mongodb.net/?retryWrites=true&w=majority'
-
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
 .then(client => {
     console.log('Connected to Database')
