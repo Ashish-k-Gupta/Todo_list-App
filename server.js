@@ -4,10 +4,20 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const { ObjectId } = require('mongodb');
 const app = express()
+const PORT = 3000
 const MongoClient = require('mongodb').MongoClient
-const connectionString = 'mongodb+srv://AshishGupta:tSw64ekEU1rlsAeu@cluster0.ckyacck.mongodb.net/?retryWrites=true&w=majority'
 
-MongoClient.connect(connectionString, { useUnifiedTopology: true})
+require('dotenv').config()
+
+let db, 
+    dbConnectionStr = process.env.DB_STRING,
+    dbName = 'todo-app'
+
+    
+// const connectionString = 'mongodb+srv://AshishGupta:tSw64ekEU1rlsAeu@cluster0.ckyacck.mongodb.net/?retryWrites=true&w=majority'
+// const connectionString = 'mongodb+srv://AshishGupta:tSw64ekEU1rlsAeu@cluster0.ckyacck.mongodb.net/?retryWrites=true&w=majority'
+
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
 .then(client => {
     console.log('Connected to Database')
     const db = client.db('todo-app')
@@ -74,6 +84,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true})
     })
 
 .catch(error => console.error(error))
+
+
 
 //Make Sure you place body-parser before your CRUD handlers!
 
