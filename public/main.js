@@ -43,6 +43,7 @@ deleteButtons.forEach(button => {
                     // Task deleted successfully
                     const taskElement = this.parentNode.parentNode;
                     taskElement.remove();
+                    location.reload();
                 } else {
                     console.error(data.message); // Handle other messages
                 }

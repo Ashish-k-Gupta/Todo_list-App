@@ -58,6 +58,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
             .then(result => {
                 if (result.deletedCount === 1) {
                     res.json({ message: 'Task deleted' });
+                    
                 } else {
                     res.status(404).json({ message: 'Task not found' });
                 }
