@@ -11,7 +11,7 @@
 
     <form action="/task" method="post">
         <input type="text" placeholder="Add Your Task Here" name="task" id="taskInput">
-        <button type="submit">Submit</button>
+            <button id="submitButton" role="button" type="submit">Submit</button>
     </form>
     
     <section data-postion="tasks">
@@ -25,7 +25,9 @@
                 </li>
                 
                 <section data-postion="delete-task">
-                    <button class="mark-done" data-task-id="<%= tasks[i]._id %>" style="margin-left:  2rem;">DELETE</button>
+
+                    <button class="mark-done" data-task-id="<%= tasks[i]._id %>">DONE</button>
+                    <button class="mark-delete" data-task-id="<%= tasks[i]._id %>">DELETE</button>
                 </section>
                 </div>
 

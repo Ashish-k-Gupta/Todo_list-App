@@ -19,7 +19,8 @@ submitButton.addEventListener('click', function(event){
  */
 
 
-const deleteButtons = document.querySelectorAll('.mark-done');
+
+const deleteButtons = document.querySelectorAll('.mark-delete');
 
 deleteButtons.forEach(button => {
     button.addEventListener('click', function() {
