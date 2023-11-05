@@ -1,25 +1,34 @@
-/* 
-document.addEventListener('DOMContentLoaded', function(){
 
+const taskDone = document.querySelectorAll('.mark-done')
 
-const submitButton = document.getElementById('addButton')
+// taskDone.addEventListener('click', markComplete)
 
+taskDone.forEach(function (button){
+    button.addEventListener('click',function(){
+        const taskText = this.closest('.container').querySelector('span.thisText');
+        if(taskText.style.textDecoration === 'line-through' && taskText.style.color === 'grey'){
 
-submitButton.addEventListener('click', function(event){
-    const taskInput = document.getElementById('taskInput')
-    const task = taskInput.value.trim();
-
-    if(task === ''){
-        alert('Task Cannot Be Empty')
-        event.preventDefault()
-    }
+            taskText.style.textDecoration = 'none'
+            taskText.style.color = 'white'
+        }else{
+            taskText.style.textDecoration = 'line-through'
+            taskText.style.color = 'grey'
+        }
+    } )
+    
 })
-})
 
- */
+// async function markComplete(){
+//     const taskText = this.closest('.container').querySelectorAll('span:not(.completed)').innerText
+//     alert(taskText)
+//     // try{
+//     //     const response = await fetch('markComplete', {
+//     //         method: 'put',
+//     //     })
+//     // }
+// }
 
-
-
+ 
 const deleteButtons = document.querySelectorAll('.mark-delete');
 
 deleteButtons.forEach(button => {

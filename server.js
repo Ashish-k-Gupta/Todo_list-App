@@ -31,7 +31,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
         .toArray()
         .then(results =>{
             // console.log(results)
-            res.render('index.ejs', {tasks: results})
+            res.render('indexTest.ejs', {tasks: results})
         })
         .catch(error => console.error(error))
     })
@@ -40,7 +40,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
         const task = req.body.task;
         const uppercaseTask = task.toUpperCase();
         tasksCollection
-        .insertOne({task: uppercaseTask})
+        .insertOne({task: uppercaseTask, completed: false})
         .then(result => {
             res.redirect('/')
         })
