@@ -1,33 +1,41 @@
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            // Problem is here between these + signs
 
+            
 const taskDone = document.querySelectorAll('.mark-done')
 
-// taskDone.addEventListener('click', markComplete)
-
-taskDone.forEach(function (button){
-    button.addEventListener('click',function(){
-        const taskText = this.closest('.container').querySelector('span.thisText');
-        if(taskText.style.textDecoration === 'line-through' && taskText.style.color === 'grey'){
-
-            taskText.style.textDecoration = 'none'
-            taskText.style.color = 'white'
-        }else{
-            taskText.style.textDecoration = 'line-through'
-            taskText.style.color = 'grey'
-        }
-    } )
-    
+Array.from(taskDone).forEach((element) =>{
+    element.addEventListener('click', markComplete)
 })
 
-// async function markComplete(){
-//     const taskText = this.closest('.container').querySelectorAll('span:not(.completed)').innerText
-//     alert(taskText)
-//     // try{
-//     //     const response = await fetch('markComplete', {
-//     //         method: 'put',
-//     //     })
-//     // }
-// }
+// taskDone.forEach(function (button){
+//     button.addEventListener('click',markComplete)
+// })
 
+
+async function markComplete(){
+    const taskSelect = this.closest('.container').querySelectorAll('span')[1].innerText;
+    // const taskText = taskSelect.textContent;
+    console.log(taskText)
+    
+    try{
+        const response = await fetch('markComplete', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'taskFromJS': taskSelect
+            })
+        })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  
 const deleteButtons = document.querySelectorAll('.mark-delete');
 

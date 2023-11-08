@@ -36,6 +36,32 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
         .catch(error => console.error(error))
     })
 
+
+    
+
+    app.put('/markComplete', (request, response) =>{
+        db.collection('todos').updateOne({tasks: request.body.taskFromJS},{
+            $set: {
+                completed: true
+            }
+        },{
+            sort: {_id: -1}, 
+            upsert: false
+        })
+        .then(result => {
+            console.log('Marked Complete')
+            response.json('Marked Complete')
+        })
+        .catch(error => console.error(error))
+    })
+
+
+
+
+
+
+
+
     app.post('/task', (req, res) => {
         const task = req.body.task;
         const uppercaseTask = task.toUpperCase();
