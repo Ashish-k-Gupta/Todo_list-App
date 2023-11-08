@@ -21,7 +21,11 @@
             <% for(let i = 0; i < tasks.length; i++) {%>
                 <div class="container">
                 <li class="task">
+                    <% if(items[i].completed === true) {%>
+                        <span class="completed"><%= items[i].thing %></span>
+                        <% }else {%> 
                     <span><%= tasks[i].task %></span>
+                    <%} %>
                 </li>
                 
                 <section data-postion="delete-task">

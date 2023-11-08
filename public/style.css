@@ -124,3 +124,7 @@ background-color: green;
 margin-right: 1rem;
 }
 
+.completed{
+  color: gray;
+  text-decoration: line-through;
+}
