@@ -40,7 +40,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
     
 
     app.put('/markComplete', (request, response) =>{
-        db.collection('todos').updateOne({tasks: request.body.taskFromJS},{
+        db.collection('tasks').updateOne({tasks: request.body.taskFromJS},{
             $set: {
                 completed: true
             }

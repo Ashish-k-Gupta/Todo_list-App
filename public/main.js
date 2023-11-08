@@ -7,7 +7,7 @@ const taskDone = document.querySelectorAll('.mark-done')
 Array.from(taskDone).forEach((element) =>{
     element.addEventListener('click', markComplete)
 })
-
+ 
 // taskDone.forEach(function (button){
 //     button.addEventListener('click',markComplete)
 // })
