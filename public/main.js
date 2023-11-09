@@ -14,9 +14,7 @@ Array.from(taskDone).forEach((element) =>{
 
 
 async function markComplete(){
-    const taskSelect = this.closest('.container').querySelectorAll('span')[1].innerText;
-    // const taskText = taskSelect.textContent;
-    console.log(taskText)
+    const taskSelect = this.closest('.container').querySelectorAll('span')[0].innerText;
     
     try{
         const response = await fetch('markComplete', {

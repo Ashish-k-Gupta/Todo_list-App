@@ -23,6 +23,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
 
     app.use(bodyParser.urlencoded({extended: true }))
     app.use(express.static('public'));
+    app.use(bodyParser.json())
 
     app.get('/',  (req, res) => {
         // res.sendFile(__dirname +'/index.html')
@@ -40,7 +41,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
     
 
     app.put('/markComplete', (request, response) =>{
-        db.collection('tasks').updateOne({tasks: request.body.taskFromJS},{
+        db.collection('tasks').updateOne({task: request.body.taskFromJS},{
             $set: {
                 completed: true
             }
