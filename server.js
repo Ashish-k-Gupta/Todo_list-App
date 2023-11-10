@@ -37,9 +37,37 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
         .catch(error => console.error(error))
     })
 
-
+    app.put('/markComplete', (request, response) => {
+        const taskToMark = request.body.taskFromJS;
+    
+        // Find the task by task name
+        db.collection('tasks').findOne({ task: taskToMark })
+            .then(task => {
+                if (task) {
+                    const newCompletionStatus = !task.completed; // Toggle completion status
+    
+                    // Update the task's completion status
+                    return db.collection('tasks').updateOne(
+                        { _id: task._id },
+                        { $set: { completed: newCompletionStatus } }
+                    );
+                } else {
+                    throw new Error('Task not found');
+                }
+            })
+            .then(result => {
+                console.log('Toggled Completion Status');
+                response.json('Toggled Completion Status');
+            })
+            .catch(error => {
+                console.error(error);
+                response.status(500).json({ error: 'An error occurred while toggling the completion status' });
+            });
+    });
     
 
+    
+/* 
     app.put('/markComplete', (request, response) =>{
         db.collection('tasks').updateOne({task: request.body.taskFromJS},{
             $set: {
@@ -56,7 +84,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
         .catch(error => console.error(error))
     })
 
-
+ */
 
 
 
@@ -108,24 +136,5 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true})
     })
 
 .catch(error => console.error(error))
-
-
-
-//Make Sure you place body-parser before your CRUD handlers!
-
-// ALl our handlers are here....
-
-
-/* 
-    app.delete('/tasks', (req, res) =>{
-        tasksCollection.deleteOne(
-            {name: req.body.tasks}
-        )
-        .then(result => {
-            res.json("Task Is Completed")
-        })
-        .catch(error => console.error(error))
-    })
- */
 
 
